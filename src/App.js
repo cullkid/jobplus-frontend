@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import react from "react";
+import { Route, Routes } from "react-router-dom";
+import LoginPage from "./PAGES/login/LoginPage";
+import HomePage from "./PAGES/home/HomePage";
+import JobNotificationPage from "./PAGES/job notification/JobNotificationPage";
+import JobApplyPage from "./PAGES/jobs application/JobApplyPage";
+import JobListPage from "./PAGES/list jobs/JobListPage";
+import ProfilePage from "./PAGES/profile/ProfilePage";
+import SavedJobsPage from "./PAGES/saved jobs/SavedJobsPage";
+import SignIn from "./PAGES/sign in/SignInPage";
+import ResetPasswordPage from "./PAGES/reset password/ResetPasswordPage";
+import SendApplyPage from "./PAGES/send apply/SendApplyPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+      <div>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/list" element={<JobListPage />} />
+          <Route path="/apply" element={<JobApplyPage />} />
+          <Route path="/notify" element={<JobNotificationPage />} />
+          <Route path="/save" element={<SavedJobsPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<SignIn />} />
+          <Route path="/resetpassword" element={<ResetPasswordPage />} />
+          <Route path="/sendapply" element={<SendApplyPage />} />
+        </Routes>
+      </div>
     </div>
   );
 }
