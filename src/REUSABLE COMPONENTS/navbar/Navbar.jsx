@@ -8,6 +8,7 @@ import { FiLogIn } from "react-icons/fi";
 import { TiTimes } from "react-icons/ti";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Badge from "@mui/material/Badge";
 
 const Navbar = () => {
   const [dropList, setDropList] = useState(false);
@@ -51,6 +52,7 @@ const Navbar = () => {
             >
               Job Listing
             </Link>
+
             <Link
               to="/apply"
               className="py-4 hover:bg-white hover:text-blue-500 px-2"
@@ -80,7 +82,6 @@ const Navbar = () => {
             >
               Job Listing
             </Link>
-
             <Link
               onClick={closeNav}
               to="/apply"
@@ -99,11 +100,14 @@ const Navbar = () => {
               <AiOutlineSearch />
             </Link>
             <Link to="/notify" className="mr-[20px]">
-              <FaBell />
-              {/* <span className="savecount">1</span> */}
+              <Badge color="secondary" badgeContent={0} showZero>
+                <FaBell />
+              </Badge>
             </Link>
             <Link to="/save" className="mr-[20px]">
-              <AiFillStar />
+              <Badge color="secondary" badgeContent={1} showZero>
+                <AiFillStar />
+              </Badge>
             </Link>
             <Link to="/profile" className="mr-[20px]">
               <BsFillPersonFill />

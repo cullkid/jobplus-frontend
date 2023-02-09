@@ -12,7 +12,7 @@ const JobList = () => {
       <Navbar />
       <SearchHeader type="list" />
       <div className="relative w-[450px] md:w-[1000px] md:flex justify-between  mx-auto pb-[5px]">
-        <div className="sticky">
+        <div className=" w-[210px] h-">
           <BrowseBySector />
           <BrowseByLocations />
         </div>

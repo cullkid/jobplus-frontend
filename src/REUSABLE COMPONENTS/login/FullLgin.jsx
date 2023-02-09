@@ -1,16 +1,49 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+// import { AuthContext } from "../../CONTEXT/AuthContext";
+import axios from "axios";
+import { BsFillPersonFill } from "react-icons/bs";
 
 const FullLgin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [credentials, setCredentials] = useState({
+    username: undefined,
+    password: undefined,
+  });
+
+  const [error, setError] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  };
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    setError(false);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/api/login",
+        credentials
+      );
+
+      localStorage.setItem("eze-token", response.data.token);
+
+      navigate("/");
+    } catch (err) {
+      setError(true);
+    }
+  };
 
   return (
     <div>
       <div className="w-[450px] md:w-[1000px] mx-auto">
-        <h1 className="py-[35px] text-2xl font-bold">Login</h1>
-        <div className="w-[350px] bg-white mx-auto mt-[80px] pb-[20px]">
-          <div className="w-[300px] mx-auto pb-[20px]">
+        <div className="w-[350px] bg-white mx-auto pt-[40px] mt-[80px] pb-[20px] relative">
+          <div className="h-[80px] w-[350px] absolute top-[-25px]">
+            <BsFillPersonFill className="bg-gray-600 text-gray-400 w-[60px] h-[60px] border-[2px] mx-auto rounded-full " />
+          </div>
+          <div className="w-[300px] mx-auto pb-[20px] ">
             {/*email container */}
             <div className="flex flex-col pt-[20px]">
               <label className="font-bold" htmlFor="">
@@ -20,9 +53,8 @@ const FullLgin = () => {
                 type="text"
                 placeholder="Email"
                 className="border-2 px-[10px]"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
+                onChange={handleChange}
+                id="email"
               />
             </div>
             {/*password container */}
@@ -31,35 +63,34 @@ const FullLgin = () => {
                 Password
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="password"
                 className="border-2 px-[10px]"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
+                onChange={handleChange}
+                id="password"
               />
             </div>
-            <button className="border-2 w-[300px] mt-[20px] text-white bg-pink-600 hover:bg-pink-400">
+            <button
+              onClick={handleClick}
+              className="border-2 w-[300px] mt-[20px] text-white bg-pink-600 hover:bg-pink-400"
+            >
               Login
             </button>
-            <div className="mt-[20px] flex items-center">
-              {/* <p>Don't have an account yet? </p> */}
-              <Link
-                to="/resetpassword"
-                className="ml-[5px] cursor-pointer border-b-2 border-blue-600 text-blue-600"
-              >
-                Forgot password?
-              </Link>
-            </div>
-            <div className="mt-[20px] flex items-center">
-              <p>Don't have an account yet? </p>
-              <Link
-                to="/register"
-                className="ml-[5px] cursor-pointer border-b-2 border-b-blue-600 text-blue-600"
-              >
-                Register
-              </Link>
-            </div>
+            {error && (
+              <span className="text-red-600">Something went wrong</span>
+            )}
+          </div>
+          <div className="mt-[20px] flex items-center">
+            {/* <p>Don't have an account yet? </p> */}
+            <Link
+              to="/resetpassword"
+              className="cursor-pointer text-center w-full font-bold  text-gray-600"
+            >
+              FORGOT PASSWORD?
+            </Link>
+          </div>
+          <div className="mt-[20px] flex items-center justify-end w-[300px]">
+            <Link to="/register">Register</Link>
           </div>
         </div>
       </div>

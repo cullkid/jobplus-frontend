@@ -1,35 +1,61 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { GoSignIn } from "react-icons/go";
 
 const FullSignIn = () => {
+  const [credentials, setCredentials] = useState({
+    email: undefined,
+    password: undefined,
+  });
+  const [error, setError] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(false);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/api/login",
+        credentials
+      );
+
+      localStorage.setItem("eze-token", response.data.token);
+
+      navigate("/login");
+    } catch (err) {
+      setError(true);
+    }
+  };
+
   return (
     <div>
       <div className="w-[450px] md:w-[1000px] mx-auto">
-        <h1 className="text-2xl font-bold py-[35px]">Register</h1>
-        <div className="w-[350px] bg-white mx-auto mt-[80px] pb-[20px]">
-          <div className="w-[300px] mx-auto">
-            {/*first-name container */}
+        <div className="w-[350px] relative pt-[40px] bg-white mx-auto mt-[80px] pb-[20px]">
+          <div className="h-[80px] w-[350px] absolute top-[-25px]">
+            <GoSignIn className="bg-gray-600 text-gray-400 w-[60px] h-[60px] border-[2px] mx-auto rounded-full " />
+          </div>
+          <form className="w-[300px] mx-auto" onSubmit={handleSubmit}>
+            {/*username container */}
             <div className="flex flex-col pt-[20px]">
               <label className="font-bold" htmlFor="">
-                First Name
+                Username
               </label>
               <input
                 type="text"
-                placeholder="first-name"
+                placeholder="username"
+                id="username"
                 className="border-2 px-[10px]"
+                onChange={handleChange}
               />
             </div>
-            {/*last-name container */}
-            <div className="flex flex-col pt-[20px]">
-              <label className="font-bold" htmlFor="">
-                Last Name
-              </label>
-              <input
-                type="text"
-                placeholder="last-name"
-                className="border-2 px-[10px]"
-              />
-            </div>
+
             {/*email container */}
             <div className="flex flex-col pt-[20px]">
               <label className="font-bold" htmlFor="">
@@ -38,7 +64,9 @@ const FullSignIn = () => {
               <input
                 type="text"
                 placeholder="Email"
+                id="email"
                 className="border-2 px-[10px]"
+                onChange={handleChange}
               />
             </div>
             {/*password container */}
@@ -47,9 +75,11 @@ const FullSignIn = () => {
                 Password
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="password"
+                id="password"
                 className="border-2 px-[10px]"
+                onChange={handleChange}
               />
             </div>
             {/*confirm-password container */}
@@ -58,23 +88,27 @@ const FullSignIn = () => {
                 Confirm Password
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="confirm-password"
+                id="confirm-password"
                 className="border-2 px-[10px]"
+                onChange={handleChange}
               />
             </div>
-            <button className="border-2 w-[300px] mt-[20px] text-white bg-pink-600 hover:bg-pink-400">
+            <button
+              type="submit"
+              className="border-2 w-[300px] mt-[20px] text-white bg-pink-600 hover:bg-pink-400"
+            >
               Register
             </button>
-            <div className="mt-[20px] flex items-center">
-              <p>Already have an account? </p>
-              <Link
-                to="/login"
-                className="ml-[5px] cursor-pointer border-b-2 border-b-blue-600 text-blue-600"
-              >
-                Login
-              </Link>
-            </div>
+            {error && (
+              <span className="text-red-600">Something went wrong</span>
+            )}
+          </form>
+          <div className="mt-[20px] flex items-center w-[300px] justify-end">
+            <Link to="/login" className="ml-[5px] cursor-pointer text-gray-600">
+              Login
+            </Link>
           </div>
         </div>
       </div>

@@ -10,6 +10,7 @@ import SavedJobsPage from "./PAGES/saved jobs/SavedJobsPage";
 import SignIn from "./PAGES/sign in/SignInPage";
 import ResetPasswordPage from "./PAGES/reset password/ResetPasswordPage";
 import SendApplyPage from "./PAGES/send apply/SendApplyPage";
+import Single from "./PAGES/singlepage/Single";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/register" element={<SignIn />} />
           <Route path="/resetpassword" element={<ResetPasswordPage />} />
           <Route path="/sendapply" element={<SendApplyPage />} />
+          <Route path="/find/:id" element={<Single />} />
         </Routes>
       </div>
     </div>
