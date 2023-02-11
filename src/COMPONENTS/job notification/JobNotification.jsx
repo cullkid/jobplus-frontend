@@ -1,9 +1,10 @@
 import React from "react";
 import BrowseBySector from "../../REUSABLE COMPONENTS/browse by sector/BrowseBySector";
 import BrowseByLocation from "../../REUSABLE COMPONENTS/browse by location/BrowseByLocations";
-import JobsWithdrawAndRemove from "../../REUSABLE COMPONENTS/jobs widraw and remove/JobsWithdrawAndRemove";
+// import JobsWithdrawAndRemove from "../../REUSABLE COMPONENTS/jobs widraw and remove/JobsWithdrawAndRemove";
 import Navbar from "../../REUSABLE COMPONENTS/navbar/Navbar";
 import Footer from "../../REUSABLE COMPONENTS/footer/Footer";
+import JobsNotification from "../../REUSABLE COMPONENTS/jobs notification/JobsNotification";
 
 const JobNotification = () => {
   return (
@@ -20,7 +21,8 @@ const JobNotification = () => {
           <BrowseByLocation />
         </div>
         <div>
-          <JobsWithdrawAndRemove />
+          {/* <JobsWithdrawAndRemove /> */}
+          <JobsNotification />
         </div>
       </div>
       <Footer />

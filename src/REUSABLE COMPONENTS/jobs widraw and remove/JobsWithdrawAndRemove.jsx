@@ -97,7 +97,10 @@ const Test = ({ type }) => {
                 </main>
                 <p className="mt-[15px] text-[15px]">
                   {item.description}
-                  <Link className="font-bold ml-[5px]">Read more...</Link>.
+                  <Link to="/apply" className="font-bold ml-[5px]">
+                    Read more...
+                  </Link>
+                  .
                 </p>
                 <Link
                   className={
