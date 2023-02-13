@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Pagination from "../pagination/Pagination";
 
@@ -55,7 +55,7 @@ const Sectors = () => {
             <div className="md:grid h-full grid-cols-4 place-content-between pb-[30px]">
               {firstPage.map((item) => (
                 <div
-                  key={item._id}
+                  key={item.id}
                   className="mt-[30px] w-[238px] h-[420px] md:mx-[0px] mx-auto"
                 >
                   <Link>
@@ -73,8 +73,11 @@ const Sectors = () => {
                   <div className="relative top-[30%]">
                     {item.categories.map((category) => (
                       // categories under sectors
-                      <div key={category._id} className="hover:text-gray-500">
-                        <Link className="mt-[10px] font-bold text-[12px]">
+                      <div key={category.id} className="hover:text-gray-500">
+                        <Link
+                          key={category.id}
+                          className="mt-[10px] font-bold text-[12px]"
+                        >
                           {category.name}{" "}
                           <span className="ml-[5px] text-blue-500">
                             ({category.jobs_count})

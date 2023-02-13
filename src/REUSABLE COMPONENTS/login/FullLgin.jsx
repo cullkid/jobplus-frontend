@@ -6,7 +6,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 
 const FullLgin = () => {
   const [credentials, setCredentials] = useState({
-    username: undefined,
+    email: undefined,
     password: undefined,
   });
 

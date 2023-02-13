@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../../REUSABLE COMPONENTS/navbar/Navbar";
 import BrowseBySector from "../../REUSABLE COMPONENTS/browse by sector/BrowseBySector";
 import BrowseByLocation from "../../REUSABLE COMPONENTS/browse by location/BrowseByLocations";
-import JobsWithdrawAndRemove from "../../REUSABLE COMPONENTS/jobs widraw and remove/JobsWithdrawAndRemove";
+import ReuseSavedJobs from "../../COMPONENTS/saved jobs/SavedJobs";
 import Footer from "../../REUSABLE COMPONENTS/footer/Footer";
 import { AiFillStar } from "react-icons/ai";
 
@@ -30,7 +30,7 @@ const SavedJobs = () => {
               Remove all
             </button>
           </div>
-          <JobsWithdrawAndRemove />
+          <ReuseSavedJobs />
         </div>
       </div>
       <Footer />

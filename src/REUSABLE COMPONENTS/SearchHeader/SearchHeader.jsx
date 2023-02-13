@@ -1,15 +1,58 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import jobplus from "../../image/jobplus.svg";
 import "./searchHeader.css";
+import axios from "axios";
 
 const SearchHeader = ({ type }) => {
-  const [job, setJob] = useState("");
-  const [city, setCity] = useState("");
+  const [data, setData] = useState([]);
+  const [error, setError] = useState([false]);
+  const [loading, setLoading] = useState(true);
+
+  const [credentials, setCredentials] = useState({
+    What: undefined,
+    Where: undefined,
+  });
+
+  const handleChange = (e) => {
+    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  };
 
   const navigate = useNavigate();
-  const handleSearch = () => {
-    navigate("/list", { state: { job, city } });
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:4000/api/jobs",
+        credentials,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
+          },
+        }
+      );
+
+      try {
+        setLoading(false);
+        const response = await axios.get(
+          "http://localhost:4000/api/jobs/search",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
+            },
+          }
+        );
+        setData(response.data.data);
+        console.log(data);
+      } catch (err) {
+        setLoading(true);
+        setError(true);
+      }
+
+      navigate("/list", { state: credentials });
+    } catch (err) {}
+    {
+    }
   };
 
   return (
@@ -48,7 +91,9 @@ const SearchHeader = ({ type }) => {
               type="text"
               placeholder="Job, skills or company"
               className="w-[100%] py-[10px] px-[5px]"
-              onChange={(e) => setJob(e.target.value)}
+              // onChange={(e) => setJob(e.target.value)}
+              onChange={handleChange}
+              id="What"
             />
           </div>
 
@@ -59,7 +104,9 @@ const SearchHeader = ({ type }) => {
               type="text"
               placeholder="Town, city or postcode"
               className="w-[100%] py-[10px] px-[5px]"
-              onChange={(e) => setCity(e.target.value)}
+              // onChange={(e) => setCity(e.target.value)}
+              onChange={handleChange}
+              id="Where"
             />
           </div>
 
@@ -79,3 +126,50 @@ const SearchHeader = ({ type }) => {
 };
 
 export default SearchHeader;
+
+//  const [data, setData] = useState([]);
+//  const [error, setError] = useState([false]);
+//  const [loading, setLoading] = useState(true);
+
+//  const [credentials, setCredentials] = useState({
+//    What: undefined,
+//    Where: undefined,
+//  });
+
+//  const handleChange = (e) => {
+//    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+//  };
+
+//  const navigate = useNavigate();
+
+//  const handleSearch = async () => {
+//    try {
+//      const response = await axios.post(
+//        "http://localhost:4000/api/jobs",
+//        credentials
+//      );
+
+//      localStorage.setItem("eze-token", response.data.token);
+
+//      try {
+//        setLoading(false);
+//        const response = await axios.get(
+//          "http://localhost:4000/api/jobs/search",
+//          {
+//            headers: {
+//              Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
+//            },
+//          }
+//        );
+//        setData(response.data.data);
+//        console.log(data);
+//      } catch (err) {
+//        setLoading(true);
+//        setError(true);
+//      }
+
+//      navigate("/list", { state: { credentials } });
+//    } catch (err) {}
+//    {
+//    }
+//  };

@@ -7,28 +7,28 @@ const BrowseBySector = () => {
   const [error, setError] = useState([false]);
   const [loading, setLoading] = useState(true);
 
-  const fetchLocations = async () => {
-    try {
-      setLoading(false);
-      const response = await axios.get(
-        "http://localhost:4000/api/browse-by/sectors",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
-          },
-        }
-      );
-      setData(response.data.data);
-      console.log(data);
-    } catch (err) {
-      setLoading(true);
-      setError(true);
-    }
-  };
-
   useEffect(() => {
+    const fetchLocations = async () => {
+      try {
+        setLoading(false);
+        const response = await axios.get(
+          "http://localhost:4000/api/browse-by/sectors",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
+            },
+          }
+        );
+        setData(response.data.data);
+      } catch (err) {
+        setLoading(true);
+        setError(true);
+      }
+    };
+
     fetchLocations();
   }, []);
+  // console.log(data);
 
   return (
     <div>

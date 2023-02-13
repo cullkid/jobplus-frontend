@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Pagination from "../pagination/Pagination";
 
-const Test = ({ type }) => {
+const JobsWithdrawAndRmove = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState([false]);
   const [loading, setLoading] = useState(true);
@@ -36,7 +36,6 @@ const Test = ({ type }) => {
           }
         );
         setData(response.data.data);
-        console.log(data);
       } catch (err) {
         setLoading(true);
         setError(true);
@@ -45,6 +44,7 @@ const Test = ({ type }) => {
 
     fetchJobs();
   }, []);
+  console.log(data);
 
   return (
     <div>
@@ -103,22 +103,10 @@ const Test = ({ type }) => {
                   .
                 </p>
                 <Link
-                  className={
-                    type === "withdraw"
-                      ? "flex justify-end pb-[10px]  text-red-600"
-                      : "hidden"
-                  }
+                  to="/apply"
+                  className="flex justify-end pb-[10px] font-bold text-red-600 text-[20px]"
                 >
-                  Withdraw application
-                </Link>
-                <Link
-                  className={
-                    type === "withdraw"
-                      ? "hidden"
-                      : "flex justify-end pb-[10px]  text-red-600"
-                  }
-                >
-                  Remove
+                  Apply
                 </Link>
               </div>
             </div>
@@ -134,7 +122,7 @@ const Test = ({ type }) => {
   );
 };
 
-export default Test;
+export default JobsWithdrawAndRmove;
 
 // const fetchJobs = async () => {
 //   try {

@@ -54,10 +54,10 @@ const Navbar = () => {
             </Link>
 
             <Link
-              to="/apply"
+              to="/applied"
               className="py-4 hover:bg-white hover:text-blue-500 px-2"
             >
-              Job Application
+              Job Applied
             </Link>
           </ul>
 
@@ -84,10 +84,10 @@ const Navbar = () => {
             </Link>
             <Link
               onClick={closeNav}
-              to="/apply"
+              to="/applied"
               className="text-white font-bold text-3xl py-[30px]"
             >
-              Job Application
+              Jobs Applied
             </Link>
           </ul>
         </div>

@@ -17,7 +17,8 @@ const JobList = () => {
           <BrowseByLocations />
         </div>
         <div>
-          <JobsWithdrawAndRmove type="withdraw" />
+          <JobsWithdrawAndRmove />
+          {/* type="withdraw */}
         </div>
       </div>
       <Footer />

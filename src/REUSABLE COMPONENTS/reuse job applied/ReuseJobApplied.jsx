@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./jobsNotification.css";
 import { AiFillStar } from "react-icons/ai";
 import { BiEuro } from "react-icons/bi";
 import { BiTimeFive } from "react-icons/bi";
@@ -7,8 +6,9 @@ import { GrLocation } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Pagination from "../pagination/Pagination";
+import "./reuseJobApplied.css";
 
-const JobsNotification = () => {
+const ReuseJobApplied = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState([false]);
   const [loading, setLoading] = useState(true);
@@ -19,17 +19,16 @@ const JobsNotification = () => {
   const indexOfLastPage = currentPage * postPerPage;
   const indexOfFirstPage = indexOfLastPage - postPerPage;
   const firstPage = data.slice(indexOfFirstPage, indexOfLastPage);
-  console.log(firstPage);
 
   //change page function
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
-    const fetchNotificationJobs = async () => {
+    const fetchJobs = async () => {
       try {
         setLoading(false);
         const response = await axios.get(
-          "http://localhost:4000/api/user-jobs?type=Notification",
+          "http://localhost:4000/api/user-jobs?type=Application",
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
@@ -43,7 +42,7 @@ const JobsNotification = () => {
       }
     };
 
-    fetchNotificationJobs();
+    fetchJobs();
   }, []);
   console.log(data);
 
@@ -107,7 +106,7 @@ const JobsNotification = () => {
                   to="/apply"
                   className="flex justify-end pb-[10px] font-bold text-red-600 text-[20px]"
                 >
-                  Apply
+                  Remove
                 </Link>
               </div>
             </div>
@@ -123,27 +122,4 @@ const JobsNotification = () => {
   );
 };
 
-export default JobsNotification;
-
-// const fetchJobs = async () => {
-//   try {
-//     setLoading(false);
-//     const response = await axios.get(
-//       "http://localhost:4000/api/jobs-with-companies",
-//       {
-//         headers: {
-//           Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
-//         },
-//       }
-//     );
-//     setData(response.data.data);
-//     console.log(data);
-//   } catch (err) {
-//     setLoading(true);
-//     setError(true);
-//   }
-// };
-
-// useEffect(() => {
-//   fetchJobs();
-// }, []);
+export default ReuseJobApplied;

@@ -5,8 +5,11 @@ import { GoSignIn } from "react-icons/go";
 
 const FullSignIn = () => {
   const [credentials, setCredentials] = useState({
+    first_name: undefined,
+    last_name: undefined,
     email: undefined,
     password: undefined,
+    confirm_password: undefined,
   });
   const [error, setError] = useState(false);
 
@@ -22,7 +25,7 @@ const FullSignIn = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/login",
+        "http://localhost:4000/api/users",
         credentials
       );
 
@@ -45,12 +48,25 @@ const FullSignIn = () => {
             {/*username container */}
             <div className="flex flex-col pt-[20px]">
               <label className="font-bold" htmlFor="">
-                Username
+                Fisrt name
               </label>
               <input
                 type="text"
-                placeholder="username"
-                id="username"
+                placeholder="first_name"
+                id="first_name"
+                className="border-2 px-[10px]"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="flex flex-col pt-[20px]">
+              <label className="font-bold" htmlFor="">
+                Last name
+              </label>
+              <input
+                type="text"
+                placeholder="last_name"
+                id="last_name"
                 className="border-2 px-[10px]"
                 onChange={handleChange}
               />
@@ -89,8 +105,8 @@ const FullSignIn = () => {
               </label>
               <input
                 type="password"
-                placeholder="confirm-password"
-                id="confirm-password"
+                placeholder="confirm_password"
+                id="confirm_password"
                 className="border-2 px-[10px]"
                 onChange={handleChange}
               />

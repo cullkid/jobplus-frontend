@@ -7,28 +7,28 @@ const BrowseByLocations = () => {
   const [error, setError] = useState([false]);
   const [loading, setLoading] = useState(true);
 
-  const fetchLocations = async () => {
-    try {
-      setLoading(false);
-      const response = await axios.get(
-        "http://localhost:4000/api/browse-by/locations",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
-          },
-        }
-      );
-      setData(response.data.data);
-      console.log(data);
-    } catch (err) {
-      setLoading(true);
-      setError(true);
-    }
-  };
-
   useEffect(() => {
+    const fetchLocations = async () => {
+      try {
+        setLoading(false);
+        const response = await axios.get(
+          "http://localhost:4000/api/browse-by/locations",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
+            },
+          }
+        );
+        setData(response.data.data);
+      } catch (err) {
+        setLoading(true);
+        setError(true);
+      }
+    };
+
     fetchLocations();
   }, []);
+  // console.log(data);
 
   return (
     <div className="hidden md:block ">
@@ -40,10 +40,12 @@ const BrowseByLocations = () => {
             <div className="w-[200px] mx-auto ">
               <h2 className="font-bold">Browse by location</h2>
               {data.map((list) => (
-                <div className="flex flex-col mt-[10px]">
-                  <Link>
+                <div key={list.id} className="flex flex-col mt-[10px]">
+                  <Link key={list.id}>
                     {list.city} {list.district}
-                    <span className="font-bold"> ({list.total_jobs})</span>
+                    <span key={list.id} className="font-bold">
+                      ({list.total_jobs})
+                    </span>
                   </Link>
                 </div>
               ))}
