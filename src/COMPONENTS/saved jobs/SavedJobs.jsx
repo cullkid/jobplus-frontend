@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../../REUSABLE COMPONENTS/navbar/Navbar";
 import BrowseBySector from "../../REUSABLE COMPONENTS/browse by sector/BrowseBySector";
 import BrowseByLocation from "../../REUSABLE COMPONENTS/browse by location/BrowseByLocations";
-import ReuseSavedJobs from "../../COMPONENTS/saved jobs/SavedJobs";
+import ReuseSavedJobs from "../../REUSABLE COMPONENTS/saved jobs/ReuseSavedJobs";
 import Footer from "../../REUSABLE COMPONENTS/footer/Footer";
 import { AiFillStar } from "react-icons/ai";
 

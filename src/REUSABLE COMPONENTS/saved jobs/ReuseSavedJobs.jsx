@@ -6,7 +6,7 @@ import { GrLocation } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Pagination from "../pagination/Pagination";
-import "./savedjobs.css";
+import "./savedJobs.css";
 
 const ReuseJobApplied = () => {
   const [data, setData] = useState([]);
