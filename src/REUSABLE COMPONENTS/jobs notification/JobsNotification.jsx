@@ -107,7 +107,7 @@ const JobsNotification = () => {
                   to="/apply"
                   className="flex justify-end pb-[10px] font-bold text-red-600 text-[20px]"
                 >
-                  Apply
+                  Remove
                 </Link>
               </div>
             </div>
