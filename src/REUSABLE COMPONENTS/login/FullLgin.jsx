@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import { AuthContext } from "../../CONTEXT/AuthContext";
 import axios from "axios";
 import { BsFillPersonFill } from "react-icons/bs";
+import { AuthContext } from "../../CONTEXT/AuthContext";
 
 const FullLgin = () => {
   const [credentials, setCredentials] = useState({
@@ -10,7 +11,9 @@ const FullLgin = () => {
     password: undefined,
   });
 
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
+
+  const { loading, error, dispatch } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -20,19 +23,23 @@ const FullLgin = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    setError(false);
+    // setError(false);
+    dispatch({ type: "LOGIN_START" });
 
     try {
-      const response = await axios.post(
+      const res = await axios.post(
         "http://localhost:4000/api/login",
         credentials
       );
 
-      localStorage.setItem("eze-token", response.data.token);
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.token });
+
+      localStorage.setItem("eze-token", res.data.token);
 
       navigate("/");
     } catch (err) {
-      setError(true);
+      // setError(true);
+      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
     }
   };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./jobsNotification.css";
 import { AiFillStar } from "react-icons/ai";
 import { BiEuro } from "react-icons/bi";
@@ -7,11 +7,14 @@ import { GrLocation } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Pagination from "../pagination/Pagination";
+// import { AuthContext } from "../../CONTEXT/AuthContext";
 
 const JobsNotification = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState([false]);
   const [loading, setLoading] = useState(true);
+
+  // const { user } = useContext(AuthContext);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage, setPostPerPage] = useState(3);
@@ -50,7 +53,10 @@ const JobsNotification = () => {
   return (
     <div>
       {loading ? (
-        "loading, please wait"
+        <p className="mt-[200px] text-[20px] font-bold text-red-700">
+          loading...
+          <span className="ml-[25px]">please wait or Login to view</span>
+        </p>
       ) : (
         <>
           {firstPage.map((item) => (

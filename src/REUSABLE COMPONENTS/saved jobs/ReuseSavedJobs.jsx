@@ -49,7 +49,10 @@ const ReuseJobApplied = () => {
   return (
     <div>
       {loading ? (
-        "loading, please wait"
+        <p className="mt-[200px] text-[20px] font-bold text-red-700">
+          loading...
+          <span className="ml-[25px]">please wait or Login to view</span>
+        </p>
       ) : (
         <>
           {firstPage.map((item) => (

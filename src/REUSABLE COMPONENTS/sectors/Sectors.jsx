@@ -62,9 +62,9 @@ const Sectors = () => {
                     {" "}
                     <img
                       className="absolute border-[1px] border-gray-600 border-solid block h-[150px] w-[230px] bg-no-repeat bg-center md:bg-contain brightness-50"
-                      src={item.image}
+                      // src={item.image}
                       alt="avarta"
-                      // src={(item."localhost:4000/uploads")}
+                      src={`$(http://localhost:4000/api/)uploads\image-1673717175103.jpeg`}
                     />
                   </Link>
                   <p className="text-[20px] font-bold text-white z-1 block top-[10%] left-[25%] w-[100px] text-center  relative">

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { GoSignIn } from "react-icons/go";
+import { AuthContext } from "../../CONTEXT/AuthContext";
 
 const FullSignIn = () => {
   const [credentials, setCredentials] = useState({
@@ -11,7 +12,9 @@ const FullSignIn = () => {
     password: undefined,
     confirm_password: undefined,
   });
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
+
+  const { loading, error, dispatch } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -21,19 +24,22 @@ const FullSignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(false);
+    // setError(false);
+    dispatch({ type: "REGISTER_START" });
 
     try {
-      const response = await axios.post(
+      const res = await axios.post(
         "http://localhost:4000/api/users",
         credentials
       );
+      dispatch({ type: "REGISTER_SUCCESS", payload: res.data.data });
 
-      localStorage.setItem("eze-token", response.data.token);
+      localStorage.setItem("eze-token", res.data.token);
 
       navigate("/login");
     } catch (err) {
-      setError(true);
+      // setError(true);
+      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
     }
   };
 
