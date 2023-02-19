@@ -5,6 +5,9 @@ import axios from "axios";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AuthContext } from "../../CONTEXT/AuthContext";
 
+// const axios = require("axios");
+// axios = axios();
+
 const FullLgin = () => {
   const [credentials, setCredentials] = useState({
     email: undefined,

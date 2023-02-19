@@ -7,7 +7,9 @@ import { GrLocation } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Pagination from "../pagination/Pagination";
-// import { AuthContext } from "../../CONTEXT/AuthContext";
+
+// const axios = require("axios");
+// axios = axios();
 
 const JobsNotification = () => {
   const [data, setData] = useState([]);

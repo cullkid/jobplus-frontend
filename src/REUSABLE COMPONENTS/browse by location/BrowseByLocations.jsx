@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+// const axios = require("axios");
+// axios = axios();
+
 const BrowseByLocations = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState([false]);

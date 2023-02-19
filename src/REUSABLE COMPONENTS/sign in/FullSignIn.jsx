@@ -4,6 +4,9 @@ import axios from "axios";
 import { GoSignIn } from "react-icons/go";
 import { AuthContext } from "../../CONTEXT/AuthContext";
 
+// const axios = require("axios");
+// axios = axios();
+
 const FullSignIn = () => {
   const [credentials, setCredentials] = useState({
     first_name: undefined,

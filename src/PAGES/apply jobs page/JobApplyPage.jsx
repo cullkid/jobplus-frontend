@@ -4,7 +4,7 @@ import JobApply from "../../COMPONENTS/apply jobs/JobApply";
 const JobApplyPage = () => {
   return (
     <div>
-      <JobApply />
+      <JobApply data-testid="jobapply-component" />
     </div>
   );
 };

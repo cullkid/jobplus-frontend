@@ -8,6 +8,9 @@ import axios from "axios";
 import Pagination from "../pagination/Pagination";
 import "./savedJobs.css";
 
+// const axios = require("axios");
+// axios = axios();
+
 const ReuseJobApplied = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState([false]);

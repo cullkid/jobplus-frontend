@@ -4,6 +4,9 @@ import jobplus from "../../image/jobplus.svg";
 import "./searchHeader.css";
 import axios from "axios";
 
+// const axios = require("axios");
+// axios = axios();
+
 const SearchHeader = ({ type }) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState([false]);

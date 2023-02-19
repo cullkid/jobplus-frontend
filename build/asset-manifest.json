@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.455e2e72.css",
+    "main.js": "/static/js/main.8b29512e.js",
+    "static/js/787.8d7365e4.chunk.js": "/static/js/787.8d7365e4.chunk.js",
+    "static/media/jobplus.svg": "/static/media/jobplus.1aba322bed5186fd5fc73f3fd661b101.svg",
+    "index.html": "/index.html",
+    "main.455e2e72.css.map": "/static/css/main.455e2e72.css.map",
+    "main.8b29512e.js.map": "/static/js/main.8b29512e.js.map",
+    "787.8d7365e4.chunk.js.map": "/static/js/787.8d7365e4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.455e2e72.css",
+    "static/js/main.8b29512e.js"
+  ]
+}

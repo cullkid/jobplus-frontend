@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Pagination from "../pagination/Pagination";
 
+// const axios = require("axios");
+// axios = axios();
+
 const Sectors = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState([false]);
