@@ -16,7 +16,7 @@ const Navbar = () => {
   const closeNav = () => setDropList(!dropList);
 
   return (
-    <div className="bg-[#231F20]">
+    <div className="bg-gray-900">
       {/*container-grid */}
       <div className="grid grid-cols-4 w-[1000px] mx-auto justify-between">
         {/*grid-child */}

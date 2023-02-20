@@ -31,7 +31,7 @@ const JobsWithdrawAndRmove = () => {
       try {
         setLoading(false);
         const response = await axios.get(
-          "http://localhost:4000/api/jobs-with-companies",
+          "http://localhost:4000/api/jobs-with-companies-and-skills",
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("eze-token")}`,

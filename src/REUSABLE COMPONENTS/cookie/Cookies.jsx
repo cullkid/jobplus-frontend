@@ -1,24 +1,27 @@
 import React from "react";
-import { useState } from "react";
 import { FaRegTimesCircle } from "react-icons/fa";
+import "./cookie.css";
 
-const Cookies = () => {
-  const [cookies, setCookies] = useState(false);
-  const closeCookie = () => setCookies(!cookies);
+const Cookies = ({ setCookie }) => {
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    setCookie(false);
+  };
+
   return (
-    <div>
-      <div
-        onClick={closeCookie}
-        className="static bg-blue-500 flex items-center justify-between px-8 py-2 w-[450px] pt-[25px] md:w-[1000px] mx-auto"
-      >
-        <p className="text-white">
-          Jobplus uses cookies. By continuing you are agreeing to our use of
-          cookies. <span className="border-b-2"> Learn more.</span>
-        </p>
-        <FaRegTimesCircle
-          className="text-white font-bold"
-          onClick={closeCookie}
-        />
+    <div className="bg-slate-300 h-[150px]">
+      <div className="position h-[150px] bg-gray-500 rounded-[5px] w-[700px] ml-[30px]">
+        <div className="h-full w-full flex items-center justify-around">
+          <p className="text-gray-800 w-[500px] text-[25px] font-bold">
+            Jobplus uses cookies. By continuing you are agreeing to our cookies
+            policy and privacy. <span className="border-b-2"> Learn more.</span>
+          </p>
+          <FaRegTimesCircle
+            className="text-gray-800 text-[25px] font-bold cursor-pointer"
+            onClick={handleClick}
+          />
+        </div>
       </div>
     </div>
   );
