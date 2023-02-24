@@ -103,7 +103,10 @@ const ReuseJobApplied = () => {
                 </main>
                 <p className="mt-[15px] text-[15px]">
                   {item.description}
-                  <Link to="/apply" className="font-bold ml-[5px]">
+                  <Link
+                    to="/apply"
+                    className="text-blue-400 font-bold ml-[10px] text-[18px]"
+                  >
                     Read more...
                   </Link>
                   .
@@ -112,7 +115,7 @@ const ReuseJobApplied = () => {
                   to="/apply"
                   className="flex justify-end pb-[10px] font-bold text-red-600 text-[20px]"
                 >
-                  Remove
+                  See application
                 </Link>
               </div>
             </div>

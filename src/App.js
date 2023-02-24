@@ -12,6 +12,7 @@ import ResetPasswordPage from "./PAGES/reset password/ResetPasswordPage";
 import SendApplyPage from "./PAGES/send apply/SendApplyPage";
 import Single from "./PAGES/singlepage/Single";
 import JobApply from "./COMPONENTS/apply jobs/JobApply";
+import FilterJobs from "./PAGES/filter jobs/FilterJobs";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/sendapply" element={<SendApplyPage />} />
           <Route path="/find/:id" element={<Single />} />
           <Route path="/apply" element={<JobApply />} />
+          <Route path="/filter" element={<FilterJobs />} />
         </Routes>
       </div>
     </div>

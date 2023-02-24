@@ -41,7 +41,7 @@ const Sectors = () => {
     };
     fetchSectors();
   }, []);
-  console.log(firstPage);
+  // console.log(firstPage);
 
   return (
     <div className="bg-slate-300 w-full h-[100%]">

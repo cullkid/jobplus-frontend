@@ -8,9 +8,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Pagination from "../pagination/Pagination";
 
-// const axios = require("axios");
-// axios = axios();
-
 const JobsWithdrawAndRmove = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState([false]);
@@ -59,9 +56,12 @@ const JobsWithdrawAndRmove = () => {
             <div className="border-[1px] border-blue-400 rounded-[10px] md:w-[700px] w-[450px] mt-[25px] bg-white shadow">
               <div className="md:w-[650px] w-[400px] mx-auto">
                 <article className="flex items-center justify-between pt-[5px]">
-                  <h1 className="font-bold text-blue-400 text-[30px]">
+                  <Link
+                    to="/apply"
+                    className="font-bold text-blue-400 text-[30px]"
+                  >
                     {item.title}
-                  </h1>
+                  </Link>
                   <AiFillStar size={30} />
                 </article>
 
@@ -100,16 +100,16 @@ const JobsWithdrawAndRmove = () => {
                 </main>
                 <p className="mt-[15px] text-[15px]">
                   {item.description}
-                  <Link to="/apply" className="font-bold ml-[5px]">
+                  <Link
+                    to="/apply"
+                    className="text-[18px] font-bold ml-[10px] text-blue-400"
+                  >
                     Read more...
                   </Link>
                   .
                 </p>
-                <Link
-                  to="/apply"
-                  className="flex justify-end pb-[10px] font-bold text-red-600 text-[20px]"
-                >
-                  Apply
+                <Link className="flex justify-end pb-[10px] font-bold text-red-600 text-[20px]">
+                  Save
                 </Link>
               </div>
             </div>

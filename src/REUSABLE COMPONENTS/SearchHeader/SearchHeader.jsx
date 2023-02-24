@@ -1,61 +1,50 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import jobplus from "../../image/jobplus.svg";
 import "./searchHeader.css";
 import axios from "axios";
-
-// const axios = require("axios");
-// axios = axios();
+import { SearchContext } from "../../CONTEXT/searchContext";
 
 const SearchHeader = ({ type }) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState([false]);
   const [loading, setLoading] = useState(true);
 
-  const [credentials, setCredentials] = useState({
-    What: undefined,
-    Where: undefined,
-  });
-
-  const handleChange = (e) => {
-    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-  };
-
   const navigate = useNavigate();
 
-  const handleSearch = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:4000/api/jobs",
-        credentials,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
-          },
-        }
-      );
+  const [what, setWhat] = useState("");
+  const [where, setWhere] = useState("");
 
-      try {
-        setLoading(false);
-        const response = await axios.get(
-          "http://localhost:4000/api/jobs/search",
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
-            },
-          }
-        );
-        setData(response.data.data);
-        console.log(data);
-      } catch (err) {
-        setLoading(true);
-        setError(true);
-      }
+  // const handleSearch = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     setLoading(false);
+  //     console.log("testing");
+  //     const res = await axios.get(
+  //       `http://localhost:4000/api/jobs/search?what=${what}&where=${where}`,
 
-      navigate("/list", { state: credentials });
-    } catch (err) {}
-    {
-    }
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
+  //         },
+  //       }
+  //     );
+  //     console.log("data", res.data);
+  //     setData(res.data.data);
+  //     navigate("/filter", { state: { what, where } });
+  //   } catch (err) {
+  //     setLoading(true);
+  //     setError(true);
+  //   }
+  // };
+
+  const { dispatch } = useContext(SearchContext);
+
+  const handleSearch = () => {
+    //dispatch will send the new state of (destination, date, option) to the single page that the search found
+    dispatch({ type: "NEW_SEARCH", payload: { what, where } });
+    navigate("/filter", { state: { what, where } });
+    dispatch({ type: "RESET_SEARCH" });
   };
 
   return (
@@ -95,7 +84,7 @@ const SearchHeader = ({ type }) => {
               placeholder="Job, skills or company"
               className="w-[100%] py-[10px] px-[5px]"
               // onChange={(e) => setJob(e.target.value)}
-              onChange={handleChange}
+              onChange={(e) => setWhat(e.target.value)}
               id="What"
             />
           </div>
@@ -108,7 +97,7 @@ const SearchHeader = ({ type }) => {
               placeholder="Town, city or postcode"
               className="w-[100%] py-[10px] px-[5px]"
               // onChange={(e) => setCity(e.target.value)}
-              onChange={handleChange}
+              onChange={(e) => setWhere(e.target.value)}
               id="Where"
             />
           </div>
@@ -129,50 +118,3 @@ const SearchHeader = ({ type }) => {
 };
 
 export default SearchHeader;
-
-//  const [data, setData] = useState([]);
-//  const [error, setError] = useState([false]);
-//  const [loading, setLoading] = useState(true);
-
-//  const [credentials, setCredentials] = useState({
-//    What: undefined,
-//    Where: undefined,
-//  });
-
-//  const handleChange = (e) => {
-//    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-//  };
-
-//  const navigate = useNavigate();
-
-//  const handleSearch = async () => {
-//    try {
-//      const response = await axios.post(
-//        "http://localhost:4000/api/jobs",
-//        credentials
-//      );
-
-//      localStorage.setItem("eze-token", response.data.token);
-
-//      try {
-//        setLoading(false);
-//        const response = await axios.get(
-//          "http://localhost:4000/api/jobs/search",
-//          {
-//            headers: {
-//              Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
-//            },
-//          }
-//        );
-//        setData(response.data.data);
-//        console.log(data);
-//      } catch (err) {
-//        setLoading(true);
-//        setError(true);
-//      }
-
-//      navigate("/list", { state: { credentials } });
-//    } catch (err) {}
-//    {
-//    }
-//  };
