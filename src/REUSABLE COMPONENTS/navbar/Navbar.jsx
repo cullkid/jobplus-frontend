@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaBell } from "react-icons/fa";
@@ -9,11 +9,34 @@ import { TiTimes } from "react-icons/ti";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Badge from "@mui/material/Badge";
+import axios from "axios";
+import "./nav.css";
 
 const Navbar = () => {
   const [dropList, setDropList] = useState(false);
   const handleClick = () => setDropList(!dropList);
   const closeNav = () => setDropList(!dropList);
+  const [savedJobsCount, setSavedJobsCount] = useState(0);
+
+  useEffect(() => {
+    const savedJobs = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:4000/api/user-jobs?type=Saved",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
+            },
+          }
+        );
+        const savedJob = res.data.data;
+        const count = savedJob.length;
+        setSavedJobsCount(count);
+      } catch {}
+    };
+    savedJobs();
+  }, []);
+  console.log(savedJobsCount);
 
   return (
     <div className="bg-gray-900">
@@ -105,8 +128,9 @@ const Navbar = () => {
               </Badge>
             </Link>
             <Link to="/save" className="mr-[20px]">
-              <Badge color="secondary" badgeContent={1} showZero>
+              <Badge color="secondary" badgeContent={savedJobsCount} showZero>
                 <AiFillStar />
+                {/* <span className="savedcount">1</span> */}
               </Badge>
             </Link>
             <Link to="/profile" className="mr-[20px]">

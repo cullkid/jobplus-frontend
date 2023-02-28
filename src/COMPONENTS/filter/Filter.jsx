@@ -128,10 +128,13 @@ const Filter = ({ type }) => {
             "loading, please wait"
           ) : (
             <>
-              {data &&
+              {data ? (
                 firstPage.map((item) => (
                   <FullFilterJobs item={item} key={item.id} />
-                ))}
+                ))
+              ) : (
+                <p>Not available</p>
+              )}
               <Pagination
                 postPerPage={postPerPage}
                 totalPosts={data.length}

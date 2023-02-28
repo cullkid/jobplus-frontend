@@ -1,0 +1,15 @@
+.savedcount {
+  position: absolute;
+  padding: 0px 10px 10px 0px;
+  /* height: 15px; */
+  /* width: 25px;  */
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  border: 1px gray solid;
+  font-size: 15px;
+  text-align: center;
+  font-weight: bold;
+  display: inline-block;
+  transform: translate(11px, -38px);
+}

@@ -41,7 +41,7 @@ const Sectors = () => {
     };
     fetchSectors();
   }, []);
-  // console.log(firstPage);
+  console.log(firstPage);
 
   return (
     <div className="bg-slate-300 w-full h-[100%]">
@@ -62,7 +62,7 @@ const Sectors = () => {
                   key={item.id}
                   className="mt-[30px] w-[238px] h-[420px] md:mx-[0px] mx-auto"
                 >
-                  <Link>
+                  <Link to="jobs-in-a-sector">
                     <img
                       className="absolute border-[1px] border-gray-600 border-solid block h-[150px] w-[230px] bg-no-repeat bg-center md:bg-contain brightness-50"
                       src={item.image}
@@ -106,25 +106,3 @@ const Sectors = () => {
 };
 
 export default Sectors;
-
-// const fetchSectors = async () => {
-//   try {
-//     setLoading(false);
-//     const response = await axios.get(
-//       "http://localhost:4000/api/sectors-with-categories",
-//       {
-//         headers: {
-//           Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
-//         },
-//       }
-//     );
-//     setData(response.data.data);
-//   } catch (err) {
-//     setLoading(true);
-//     setError(true);
-//   }
-// };
-
-// useEffect(() => {
-//   fetchSectors();
-// }, []);

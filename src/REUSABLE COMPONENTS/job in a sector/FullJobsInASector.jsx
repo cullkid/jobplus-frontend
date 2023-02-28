@@ -4,11 +4,15 @@ import { AiFillStar } from "react-icons/ai";
 import { BiEuro } from "react-icons/bi";
 import { BiTimeFive } from "react-icons/bi";
 import { GrLocation } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import Pagination from "../pagination/Pagination";
 
-const JobsWithdrawAndRmove = () => {
+const FullJobsInASector = () => {
+  const location = useLocation();
+  // console.log(location);
+  const id = location.pathname.split("/")[1];
+
   const [data, setData] = useState([]);
   const [error, setError] = useState([false]);
   const [loading, setLoading] = useState(true);
@@ -23,18 +27,21 @@ const JobsWithdrawAndRmove = () => {
   //change page function
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const { sectorId } = useParams();
+
   useEffect(() => {
     const fetchJobs = async () => {
       try {
         setLoading(false);
         const response = await axios.get(
-          "http://localhost:4000/api/jobs-with-companies-and-skills",
+          `http://localhost:4000/api/sector-jobs/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
             },
           }
         );
+        console.log(response.data);
         setData(response.data.data);
       } catch (err) {
         setLoading(true);
@@ -43,8 +50,7 @@ const JobsWithdrawAndRmove = () => {
     };
 
     fetchJobs();
-  }, []);
-  console.log(data);
+  }, [sectorId]);
 
   return (
     <div>
@@ -125,4 +131,4 @@ const JobsWithdrawAndRmove = () => {
   );
 };
 
-export default JobsWithdrawAndRmove;
+export default FullJobsInASector;
