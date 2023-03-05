@@ -6,15 +6,18 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "./CONTEXT/AuthContext";
 import { SearchContextProvider } from "./CONTEXT/searchContext";
+import JobContextProvider from "./CONTEXT/JobContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
       <SearchContextProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <JobContextProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </JobContextProvider>
       </SearchContextProvider>
     </AuthContextProvider>
   </React.StrictMode>

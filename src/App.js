@@ -13,7 +13,7 @@ import SendApplyPage from "./PAGES/send apply/SendApplyPage";
 import Single from "./PAGES/singlepage/Single";
 import JobApply from "./COMPONENTS/apply jobs/JobApply";
 import FilterJobs from "./PAGES/filter jobs/FilterJobs";
-import JobsInASectorPage from "./PAGES/jobs in a sector/JobsInASectorPage";
+import JobsInASector from "./PAGES/sector jobs/JobsInASector";
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
           <Route path="/find/:id" element={<Single />} />
           <Route path="/apply" element={<JobApply />} />
           <Route path="/filter" element={<FilterJobs />} />
-          <Route path="/jobs-in-a-sector" element={<JobsInASectorPage />} />
+          <Route path="/sector/:id" element={<JobsInASector />} />
         </Routes>
       </div>
     </div>

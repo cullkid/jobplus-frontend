@@ -18,7 +18,6 @@ const JobList = () => {
         </div>
         <div>
           <JobsWithdrawAndRmove />
-          {/* type="withdraw */}
         </div>
       </div>
       <Footer />

@@ -8,11 +8,8 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import Pagination from "../pagination/Pagination";
 
-const FullJobsInASector = () => {
-  const location = useLocation();
-  // console.log(location);
-  const id = location.pathname.split("/")[1];
-
+const FullJobsInASector = (props) => {
+  const { itemId } = useParams();
   const [data, setData] = useState([]);
   const [error, setError] = useState([false]);
   const [loading, setLoading] = useState(true);
@@ -27,14 +24,12 @@ const FullJobsInASector = () => {
   //change page function
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const { sectorId } = useParams();
-
   useEffect(() => {
     const fetchJobs = async () => {
       try {
         setLoading(false);
         const response = await axios.get(
-          `http://localhost:4000/api/sector-jobs/${id}`,
+          `http://localhost:4000/api/sector-jobs/${props.id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
@@ -43,14 +38,14 @@ const FullJobsInASector = () => {
         );
         console.log(response.data);
         setData(response.data.data);
+        setLoading(false);
       } catch (err) {
-        setLoading(true);
         setError(true);
       }
     };
 
     fetchJobs();
-  }, [sectorId]);
+  }, [props.id]);
 
   return (
     <div>

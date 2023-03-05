@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./jobs.css";
 import { AiFillStar } from "react-icons/ai";
 import { BiEuro } from "react-icons/bi";
@@ -7,11 +7,14 @@ import { GrLocation } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Pagination from "../pagination/Pagination";
+import { JobContext } from "../../CONTEXT/JobContext";
 
 const JobsWithdrawAndRmove = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState([false]);
   const [loading, setLoading] = useState(true);
+
+  const { savedJobsCount, setSavedJobsCount } = useContext(JobContext);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage, setPostPerPage] = useState(3);
@@ -44,7 +47,26 @@ const JobsWithdrawAndRmove = () => {
 
     fetchJobs();
   }, []);
-  console.log(data);
+  // console.log(data);
+
+  //click save job
+  const handleSaveJob = async (jobId) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:4000/api/user-jobs?type=Saved/${jobId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
+          },
+        }
+      );
+      console.log(response.data); // log response data for testing purposes
+      setSavedJobsCount(savedJobsCount + 1);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div>
@@ -64,15 +86,6 @@ const JobsWithdrawAndRmove = () => {
                   </Link>
                   <AiFillStar size={30} />
                 </article>
-
-                {/* {item.companies.map((company) => (
-                  <h6 className="mt-[10px]">
-                    Posted by
-                    <span className="text-blue-400 ml-[5px]">
-                      {company.name}
-                    </span>
-                  </h6>
-                ))} */}
                 <h6 className="mt-[10px] text-[20px]">
                   posted by:{" "}
                   <span className="text-blue-400 ml-[5px]">UXins, flacs</span>{" "}
@@ -108,7 +121,10 @@ const JobsWithdrawAndRmove = () => {
                   </Link>
                   .
                 </p>
-                <Link className="flex justify-end pb-[10px] font-bold text-red-600 text-[20px]">
+                <Link
+                  onClick={() => handleSaveJob(item._id)}
+                  className="flex justify-end pb-[10px] font-bold text-red-600 text-[20px]"
+                >
                   Save
                 </Link>
               </div>

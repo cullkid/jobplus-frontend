@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Pagination from "../pagination/Pagination";
+import FullJobsInASector from "../job in a sector/FullJobsInASector";
 
 // const axios = require("axios");
 // axios = axios();
@@ -59,17 +60,18 @@ const Sectors = () => {
             <div className="md:grid h-full  grid-cols-4 place-content-between ">
               {firstPage.map((item) => (
                 <div
+                  // onClick={() => handleSectorClick(item.id)}
                   key={item.id}
                   className="mt-[30px] w-[238px] h-[420px] md:mx-[0px] mx-auto"
                 >
-                  <Link to="jobs-in-a-sector">
+                  {/* <Link to="jobs-in-a-sector"> */}
+                  <Link to={`/jobs/${item.id}`}>
                     <img
                       className="absolute border-[1px] border-gray-600 border-solid block h-[150px] w-[230px] bg-no-repeat bg-center md:bg-contain brightness-50"
                       src={item.image}
-                      // alt="avarta"
-                      // src={`$(http://localhost:4000/api/)uploads\image-1673717175103.jpeg`}
                     />
                   </Link>
+                  {/* </Link> */}
                   <p className="text-[20px] font-bold text-white z-1 block top-[10%] left-[25%] w-[100px] text-center  relative">
                     {item.name}
                   </p>
@@ -92,6 +94,7 @@ const Sectors = () => {
                 </div>
               ))}
             </div>
+
             <span>{error}</span>
           </>
         )}
@@ -106,3 +109,19 @@ const Sectors = () => {
 };
 
 export default Sectors;
+
+// const [selectedSector, setSelectedSector] = useState(null);
+
+// const handleSectorClick = (sectorId) => {
+//   setSelectedSector(sectorId);
+// };
+
+{
+  /* {selectedSector ? (
+              <FullJobsInASector sectorId={selectedSector} />
+            ) : ( */
+}
+
+{
+  /* )} */
+}
