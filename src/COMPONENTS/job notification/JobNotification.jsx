@@ -1,5 +1,5 @@
 import React from "react";
-import BrowseBySector from "../../REUSABLE COMPONENTS/browse by sector/BrowseBySector";
+// import BrowseBySector from "../../REUSABLE COMPONENTS/browse by sector/BrowseBySector";
 import BrowseByLocation from "../../REUSABLE COMPONENTS/browse by location/BrowseByLocations";
 // import JobsWithdrawAndRemove from "../../REUSABLE COMPONENTS/jobs widraw and remove/JobsWithdrawAndRemove";
 import Navbar from "../../REUSABLE COMPONENTS/navbar/Navbar";
@@ -17,7 +17,7 @@ const JobNotification = () => {
       </div>
       <div className="w-[450px] md:w-[1000px] md:flex mx-auto justify-between pb-[5px]">
         <div>
-          <BrowseBySector />
+          {/* <BrowseBySector /> */}
           <BrowseByLocation />
         </div>
         <div>

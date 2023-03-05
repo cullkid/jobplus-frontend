@@ -1,6 +1,6 @@
 import React from "react";
 import BrowseByLocations from "../../REUSABLE COMPONENTS/browse by location/BrowseByLocations";
-import BrowseBySector from "../../REUSABLE COMPONENTS/browse by sector/BrowseBySector";
+// import BrowseBySector from "../../REUSABLE COMPONENTS/browse by sector/BrowseBySector";
 import Footer from "../../REUSABLE COMPONENTS/footer/Footer";
 import JobsWithdrawAndRmove from "../../REUSABLE COMPONENTS/jobs widraw and remove/JobsWithdrawAndRemove";
 import Navbar from "../../REUSABLE COMPONENTS/navbar/Navbar";
@@ -13,7 +13,7 @@ const JobList = () => {
       <SearchHeader type="list" />
       <div className="relative w-[450px] md:w-[1000px] md:flex justify-between  mx-auto pb-[5px]">
         <div className=" w-[210px] h-">
-          <BrowseBySector />
+          {/* <BrowseBySector /> */}
           <BrowseByLocations />
         </div>
         <div>
