@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Pagination from "../pagination/Pagination";
 import FullJobsInASector from "../job in a sector/FullJobsInASector";
+import JobsInASector from "../../PAGES/sector jobs page/JobsInASectorPage";
 
 // const axios = require("axios");
 // axios = axios();
@@ -64,14 +65,13 @@ const Sectors = () => {
                   key={item.id}
                   className="mt-[30px] w-[238px] h-[420px] md:mx-[0px] mx-auto"
                 >
-                  {/* <Link to="jobs-in-a-sector"> */}
                   <Link to={`/jobs/${item.id}`}>
                     <img
                       className="absolute border-[1px] border-gray-600 border-solid block h-[150px] w-[230px] bg-no-repeat bg-center md:bg-contain brightness-50"
                       src={item.image}
                     />
                   </Link>
-                  {/* </Link> */}
+
                   <p className="text-[20px] font-bold text-white z-1 block top-[10%] left-[25%] w-[100px] text-center  relative">
                     {item.name}
                   </p>

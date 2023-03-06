@@ -5,7 +5,7 @@ import HomePage from "./PAGES/home/HomePage";
 import JobNotificationPage from "./PAGES/job notification/JobNotificationPage";
 import JobAppliedPage from "./PAGES/jobs applied/JobAppliedPage";
 import JobListPage from "./PAGES/list jobs/JobListPage";
-// import ProfilePage from "./PAGES/profile/ProfilePage";
+import ProfilePage from "./PAGES/profile/ProfilePage";
 import SavedJobsPage from "./PAGES/saved jobs/SavedJobsPage";
 import SignIn from "./PAGES/sign in/SignInPage";
 import ResetPasswordPage from "./PAGES/reset password/ResetPasswordPage";
@@ -13,7 +13,7 @@ import SendApplyPage from "./PAGES/send apply/SendApplyPage";
 import Single from "./PAGES/singlepage/Single";
 import JobApply from "./COMPONENTS/apply jobs/JobApply";
 import FilterJobs from "./PAGES/filter jobs/FilterJobs";
-import JobsInASector from "./PAGES/sector jobs/JobsInASector";
+import JobsInASectorPage from "./PAGES/sector jobs page/JobsInASectorPage";
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
           <Route path="/applied" element={<JobAppliedPage />} />
           <Route path="/notify" element={<JobNotificationPage />} />
           <Route path="/save" element={<SavedJobsPage />} />
-          {/* <Route path="/profile" element={<ProfilePage />} /> */}
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<SignIn />} />
           <Route path="/resetpassword" element={<ResetPasswordPage />} />
@@ -33,7 +33,7 @@ function App() {
           <Route path="/find/:id" element={<Single />} />
           <Route path="/apply" element={<JobApply />} />
           <Route path="/filter" element={<FilterJobs />} />
-          <Route path="/sector/:id" element={<JobsInASector />} />
+          <Route path="/jobs/:id" element={<JobsInASectorPage />} />
         </Routes>
       </div>
     </div>
