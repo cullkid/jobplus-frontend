@@ -74,31 +74,31 @@ const FullJobsInASector = () => {
                       </Link>
                       <AiFillStar size={30} />
                     </article>
-                    {/* {item.companies.map((company) => (
-                  <h6 className="mt-[10px]">
-                    Posted by
-                    <span className="text-blue-400 ml-[5px]">
-                      {company.name}
-                    </span>
-                  </h6>
-                ))} */}
+                    {/* {job.companies.map((company) => (
+                      <h6 className="mt-[10px]">
+                        Posted by
+                        <span className="text-blue-400 ml-[5px]">
+                          {company.name}
+                        </span>
+                      </h6>
+                    ))} */}
                     <h6 className="mt-[10px] text-[20px]">
-                      posted by:{" "}
+                      posted by:
                       <span className="text-blue-400 ml-[5px]">
                         UXins, flacs
-                      </span>{" "}
+                      </span>
                     </h6>
                     {/*grid container */}
                     <main className="grid grid-cols-2 mt-[15px]">
                       {/*grid child-1 */}
                       <article className="flex items-center">
                         <BiEuro size={25} />
-                        <p className="ml-[5px]">{item.jobs.salary_type}</p>
+                        <p className="ml-[5px]">{job.salary_type}</p>
                       </article>
                       {/*grid child-2 */}
                       <article className="flex items-center justify-self-end">
                         <BiTimeFive size={25} />
-                        <p className="ml-[5px] ">{item.jobs.job_types}</p>
+                        <p className="ml-[5px] ">{job.job_types}</p>
                       </article>
                       {/*grid child-3 */}
                       <article className="flex items-center">
@@ -109,7 +109,7 @@ const FullJobsInASector = () => {
                       </article>
                     </main>
                     <p className="mt-[15px] text-[15px]">
-                      {item.jobs.description}
+                      {job.description}
                       <Link
                         to="/apply"
                         className="text-[18px] font-bold ml-[10px] text-blue-400"
@@ -131,7 +131,6 @@ const FullJobsInASector = () => {
       <Pagination
         postPerPage={postPerPage}
         totalPosts={data.length}
-        // totalPosts={data[0]?.jobs?.length || 0}
         paginate={paginate}
       />
     </div>

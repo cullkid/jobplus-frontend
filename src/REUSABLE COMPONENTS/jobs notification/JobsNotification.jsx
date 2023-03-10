@@ -62,7 +62,10 @@ const JobsNotification = () => {
       ) : (
         <>
           {firstPage.map((item) => (
-            <div className="border-[1px] border-blue-400 rounded-[10px] md:w-[700px] w-[450px] mt-[25px] bg-white shadow">
+            <div
+              key={item.id}
+              className="border-[1px] border-blue-400 rounded-[10px] md:w-[700px] w-[450px] mt-[25px] bg-white shadow"
+            >
               <div className="md:w-[650px] w-[400px] mx-auto">
                 <article className="flex items-center justify-between pt-[5px]">
                   <h1 className="font-bold text-blue-400 text-[30px]">

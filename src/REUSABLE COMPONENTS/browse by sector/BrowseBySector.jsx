@@ -44,12 +44,12 @@ const BrowseBySector = () => {
             <>
               <div className="w-[200px] mx-auto ">
                 <h2 className="font-bold">Browse by sector</h2>
-                {data.map((sector) => (
-                  <div className="flex flex-col mt-[10px]">
-                    <Link>
-                      {sector.name}
+                {data.map((item) => (
+                  <div key={item.id} className="flex flex-col mt-[10px]">
+                    <Link to={`/jobs/${item.id}`}>
+                      {item.name}
                       <span className="font-bold ml-[5px]">
-                        ({sector.total_jobs})
+                        ({item.total_jobs})
                       </span>
                     </Link>
                   </div>
