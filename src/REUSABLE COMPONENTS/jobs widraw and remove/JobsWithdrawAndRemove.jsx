@@ -47,7 +47,7 @@ const JobsWithdrawAndRmove = () => {
 
     fetchJobs();
   }, []);
-  // console.log(data);
+  console.log(data);
 
   //click save job
   const handleSaveJob = async (jobId) => {
@@ -75,7 +75,10 @@ const JobsWithdrawAndRmove = () => {
       ) : (
         <>
           {firstPage.map((item) => (
-            <div className="border-[1px] border-blue-400 rounded-[10px] md:w-[700px] w-[450px] mt-[25px] bg-white shadow">
+            <div
+              key={item.id}
+              className="border-[1px] border-blue-400 rounded-[10px] md:w-[700px] w-[450px] mt-[25px] bg-white shadow"
+            >
               <div className="md:w-[650px] w-[400px] mx-auto">
                 <article className="flex items-center justify-between pt-[5px]">
                   <Link
@@ -86,9 +89,10 @@ const JobsWithdrawAndRmove = () => {
                   </Link>
                   <AiFillStar size={30} />
                 </article>
+
                 <h6 className="mt-[10px] text-[20px]">
-                  posted by:{" "}
-                  <span className="text-blue-400 ml-[5px]">UXins, flacs</span>{" "}
+                  posted by:
+                  <span className="text-blue-400 ml-[5px]">UXins, flacs</span>
                 </h6>
 
                 {/*grid container */}
