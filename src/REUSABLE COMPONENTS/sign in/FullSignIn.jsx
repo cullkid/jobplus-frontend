@@ -15,7 +15,7 @@ const FullSignIn = () => {
     password: undefined,
     confirm_password: undefined,
   });
-  // const [error, setError] = useState(false);
+  const [succes, setSucces] = useState(false);
 
   const { loading, error, dispatch } = useContext(AuthContext);
 
@@ -38,7 +38,7 @@ const FullSignIn = () => {
       dispatch({ type: "REGISTER_SUCCESS", payload: res.data.data });
 
       localStorage.setItem("eze-token", res.data.token);
-
+      setSucces(true);
       navigate("/login");
     } catch (err) {
       // setError(true);
@@ -56,8 +56,8 @@ const FullSignIn = () => {
           <form className="w-[300px] mx-auto" onSubmit={handleSubmit}>
             {/*username container */}
             <div className="flex flex-col pt-[20px]">
-              <label className="font-bold" htmlFor="">
-                Fisrt name
+              <label className="font-bold" htmlFor="first_name">
+                First name
               </label>
               <input
                 type="text"
@@ -69,7 +69,7 @@ const FullSignIn = () => {
             </div>
 
             <div className="flex flex-col pt-[20px]">
-              <label className="font-bold" htmlFor="">
+              <label className="font-bold" htmlFor="last_name">
                 Last name
               </label>
               <input
@@ -83,7 +83,7 @@ const FullSignIn = () => {
 
             {/*email container */}
             <div className="flex flex-col pt-[20px]">
-              <label className="font-bold" htmlFor="">
+              <label className="font-bold" htmlFor="email">
                 Email
               </label>
               <input
@@ -96,7 +96,7 @@ const FullSignIn = () => {
             </div>
             {/*password container */}
             <div className="flex flex-col pt-[20px]">
-              <label className="font-bold" htmlFor="">
+              <label className="font-bold" htmlFor="password">
                 Password
               </label>
               <input
@@ -109,7 +109,7 @@ const FullSignIn = () => {
             </div>
             {/*confirm-password container */}
             <div className="flex flex-col pt-[20px]">
-              <label className="font-bold" htmlFor="">
+              <label className="font-bold" htmlFor="confirm_password">
                 Confirm Password
               </label>
               <input
@@ -126,8 +126,14 @@ const FullSignIn = () => {
             >
               Register
             </button>
+            {succes && (
+              <span className="text-red-600">Registration successful</span>
+            )}
             {error && (
-              <span className="text-red-600">Something went wrong</span>
+              <span className="text-red-600">
+                Invalide credentials, please cross check your iput and correct
+                them
+              </span>
             )}
           </form>
           <div className="mt-[20px] flex items-center w-[300px] justify-end">

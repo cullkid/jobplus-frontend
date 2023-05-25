@@ -69,7 +69,7 @@ const JobsWithdrawAndRmove = () => {
   };
 
   return (
-    <div>
+    <div data-testid="element">
       {loading ? (
         "loading, please wait"
       ) : (
