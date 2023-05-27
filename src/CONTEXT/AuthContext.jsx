@@ -54,6 +54,14 @@ const AuthReducer = (state, action) => {
         loading: false,
         error: null,
       };
+    case "REGISTER_FAILURE":
+      return {
+        user: null,
+        register: null,
+        logout: false,
+        loading: false,
+        error: action.payload,
+      };
     case "LOGOUT":
       return {
         user: null,

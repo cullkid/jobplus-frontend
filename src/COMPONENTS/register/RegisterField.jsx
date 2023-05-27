@@ -1,18 +1,18 @@
 import React from "react";
 import Footer from "../../REUSABLE COMPONENTS/footer/Footer";
 import Navbar from "../../REUSABLE COMPONENTS/navbar/Navbar";
-import FullSignIn from "../../REUSABLE COMPONENTS/sign in/FullSignIn";
+import Register from "../../REUSABLE COMPONENTS/register/Register";
 
-const SignInField = () => {
+const RegisterField = () => {
   return (
     <div className="bg-gray-200">
       <Navbar />
       <div className="pb-[120px]">
-        <FullSignIn />
+        <Register />
       </div>
       <Footer />
     </div>
   );
 };
 
-export default SignInField;
+export default RegisterField;

@@ -4,10 +4,7 @@ import axios from "axios";
 import { GoSignIn } from "react-icons/go";
 import { AuthContext } from "../../CONTEXT/AuthContext";
 
-// const axios = require("axios");
-// axios = axios();
-
-const FullSignIn = () => {
+const Register = () => {
   const [credentials, setCredentials] = useState({
     first_name: undefined,
     last_name: undefined,
@@ -16,6 +13,7 @@ const FullSignIn = () => {
     confirm_password: undefined,
   });
   const [succes, setSucces] = useState(false);
+  const [invalid, setInvalid] = useState(false);
 
   const { loading, error, dispatch } = useContext(AuthContext);
 
@@ -27,7 +25,6 @@ const FullSignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setError(false);
     dispatch({ type: "REGISTER_START" });
 
     try {
@@ -41,8 +38,7 @@ const FullSignIn = () => {
       setSucces(true);
       navigate("/login");
     } catch (err) {
-      // setError(true);
-      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
+      dispatch({ type: "REGISTER_FAILURE", payload: setInvalid(true) });
     }
   };
 
@@ -129,10 +125,9 @@ const FullSignIn = () => {
             {succes && (
               <span className="text-red-600">Registration successful</span>
             )}
-            {error && (
+            {invalid && (
               <span className="text-red-600">
-                Invalide credentials, please cross check your iput and correct
-                them
+                Error, Please cross check your inputs
               </span>
             )}
           </form>
@@ -147,4 +142,4 @@ const FullSignIn = () => {
   );
 };
 
-export default FullSignIn;
+export default Register;
