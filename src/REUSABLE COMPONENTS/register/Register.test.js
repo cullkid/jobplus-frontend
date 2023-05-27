@@ -7,7 +7,7 @@ import { AuthContext } from "../../CONTEXT/AuthContext";
 
 jest.mock("axios");
 
-describe("FullSignIn component", () => {
+describe("Register component", () => {
   test("renders the component", () => {
     render(
       <Router>
@@ -121,12 +121,6 @@ describe("FullSignIn component", () => {
         })
       );
     });
-
-    // Assert that the error is handled correctly
-    // await waitFor(() => {
-    //   expect(
-    //     screen.getByText(" Error, Please cross check your inputs")
-    //   ).toBeInTheDocument();
 
     await waitFor(() => {
       expect(

@@ -1,12 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import { AuthContext } from "../../CONTEXT/AuthContext";
 import axios from "axios";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AuthContext } from "../../CONTEXT/AuthContext";
-
-// const axios = require("axios");
-// axios = axios();
 
 const FullLgin = () => {
   const [credentials, setCredentials] = useState({
@@ -14,7 +10,8 @@ const FullLgin = () => {
     password: undefined,
   });
 
-  // const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [invalid, setInvalid] = useState(false);
 
   const { loading, error, dispatch } = useContext(AuthContext);
 
@@ -26,7 +23,6 @@ const FullLgin = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    // setError(false);
     dispatch({ type: "LOGIN_START" });
 
     try {
@@ -38,11 +34,10 @@ const FullLgin = () => {
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.token });
 
       localStorage.setItem("eze-token", res.data.token);
-
+      setSuccess(true);
       navigate("/");
     } catch (err) {
-      // setError(true);
-      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
+      dispatch({ type: "LOGIN_FAILURE", payload: setInvalid(true) });
     }
   };
 
@@ -56,7 +51,7 @@ const FullLgin = () => {
           <div className="w-[300px] mx-auto pb-[20px] ">
             {/*email container */}
             <div className="flex flex-col pt-[20px]">
-              <label className="font-bold" htmlFor="">
+              <label className="font-bold" htmlFor="email">
                 Email
               </label>
               <input
@@ -69,7 +64,7 @@ const FullLgin = () => {
             </div>
             {/*password container */}
             <div className="flex flex-col pt-[20px]">
-              <label className="font-bold" htmlFor="">
+              <label className="font-bold" htmlFor="password">
                 Password
               </label>
               <input
@@ -86,8 +81,11 @@ const FullLgin = () => {
             >
               Login
             </button>
-            {error && (
-              <span className="text-red-600">Something went wrong</span>
+            {success && (
+              <span className="text-red-600">Welcome to the Home Page</span>
+            )}
+            {invalid && (
+              <span className="text-red-600">Invalid email or password</span>
             )}
           </div>
           <div className="mt-[20px] flex items-center">
