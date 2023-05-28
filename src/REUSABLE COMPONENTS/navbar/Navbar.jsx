@@ -9,85 +9,13 @@ import { TiTimes } from "react-icons/ti";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Badge from "@mui/material/Badge";
-import axios from "axios";
-import { JobContext } from "../../CONTEXT/JobContext";
-// import NotificationIcon from "../notification count/NotificationIcon";
 
 const Navbar = () => {
   const [dropList, setDropList] = useState(false);
   const handleClick = () => setDropList(!dropList);
   const closeNav = () => setDropList(!dropList);
-  // const [savedJobsCount, setSavedJobsCount] = useState(0);
   const [jobNotifications, setJobNotifications] = useState([]);
   const [jobNotificationCount, setJobNotificationCount] = useState(0);
-
-  const { savedJobsCount, setSavedJobsCount } = useContext(JobContext);
-
-  //jobs saved count
-  useEffect(() => {
-    const savedJobs = async () => {
-      try {
-        const res = await axios.get(
-          "http://localhost:4000/api/user-jobs?type=Saved",
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
-            },
-          }
-        );
-        const savedJob = res.data.data;
-        const count = savedJob.length;
-        setSavedJobsCount(count);
-      } catch {}
-    };
-    savedJobs();
-  }, []);
-  console.log(savedJobsCount);
-
-  //job notification count
-  // useEffect(() => {
-  //   async function fetchJobNotifications() {
-  //     try {
-  //       const response = await axios.get(
-  //         "http://localhost:4000/api/user-jobs?type=Notifications",
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
-  //           },
-  //         }
-  //       );
-  //       setJobNotifications(response.data.data);
-  //       setJobNotificationCount(response.data.data.length);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  //   fetchJobNotifications();
-
-  //   function listenForJobNotifications() {
-  //     const socket = new WebSocket("ws://localhost:4000/api/notifications");
-
-  //     socket.onmessage = (event) => {
-  //       const jobNotification = JSON.parse(event.data);
-  //       setJobNotifications((jobNotifications) => [
-  //         ...jobNotifications,
-  //         jobNotification,
-  //       ]);
-  //       setJobNotificationCount((count) => count + 1);
-  //     };
-
-  //     socket.onclose = () => {
-  //       console.log("WebSocket connection closed");
-  //     };
-
-  //     socket.onerror = (error) => {
-  //       console.log(error);
-  //     };
-  //   }
-
-  //   listenForJobNotifications();
-  // }, []);
-  // console.log(jobNotificationCount);
 
   return (
     <div className="bg-gray-900">
@@ -131,7 +59,7 @@ const Navbar = () => {
               to="/applied"
               className="py-4 hover:bg-white hover:text-blue-500 px-2"
             >
-              Job Applied
+              Jobs Applied
             </Link>
           </ul>
 
@@ -171,7 +99,7 @@ const Navbar = () => {
           {/* icons*/}
           <ul className="flex items-center justify-end text-2xl text-white">
             <Link to="/list" className="mr-[20px]">
-              <AiOutlineSearch />
+              <AiOutlineSearch data-testid="search-icon" />
             </Link>
             <Link to="/notify" className="mr-[20px]">
               <Badge
@@ -180,20 +108,19 @@ const Navbar = () => {
                 showZero
               >
                 {/* <NotificationIcon /> */}
-                <FaBell />
+                <FaBell data-testid="notification-icon" />
               </Badge>
             </Link>
             <Link to="/save" className="mr-[20px]">
-              <Badge color="secondary" badgeContent={savedJobsCount} showZero>
-                <AiFillStar />
-                {/* <span className="savedcount">1</span> */}
+              <Badge color="secondary" badgeContent={0} showZero>
+                <AiFillStar data-testid="saved-jobs-icon" />
               </Badge>
             </Link>
             <Link to="/profile" className="mr-[20px]">
-              <BsFillPersonFill />
+              <BsFillPersonFill data-testid="profile-icon" />
             </Link>
             <Link to="/login">
-              <FiLogIn />
+              <FiLogIn data-testid="login-icon" />
             </Link>
           </ul>
         </div>
