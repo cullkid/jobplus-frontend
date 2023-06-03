@@ -14,30 +14,6 @@ const SearchHeader = ({ type }) => {
 
   const [what, setWhat] = useState("");
   const [where, setWhere] = useState("");
-
-  // const handleSearch = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     setLoading(false);
-  //     console.log("testing");
-  //     const res = await axios.get(
-  //       `http://localhost:4000/api/jobs/search?what=${what}&where=${where}`,
-
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
-  //         },
-  //       }
-  //     );
-  //     console.log("data", res.data);
-  //     setData(res.data.data);
-  //     navigate("/filter", { state: { what, where } });
-  //   } catch (err) {
-  //     setLoading(true);
-  //     setError(true);
-  //   }
-  // };
-
   const { dispatch } = useContext(SearchContext);
 
   const handleSearch = () => {
@@ -78,7 +54,9 @@ const SearchHeader = ({ type }) => {
         >
           {/*flex child-1 */}
           <div className="flex w-[435px] justify-between  flex-col py-4 md:mx-[0]">
-            <label className="text-white text-2xl right-[50px]">What</label>
+            <label className="text-white text-2xl right-[50px]" htmlFor="What">
+              What
+            </label>
             <input
               type="text"
               placeholder="Job, skills or company"
@@ -91,7 +69,9 @@ const SearchHeader = ({ type }) => {
 
           {/*flex child-2 */}
           <div className="flex w-[435px] justify-between  flex-col py-4 md:mx-[0]">
-            <label className="text-white text-2xl right-[50px]">Where</label>
+            <label className="text-white text-2xl right-[50px]" htmlFor="Where">
+              Where
+            </label>
             <input
               type="text"
               placeholder="Town, city or postcode"

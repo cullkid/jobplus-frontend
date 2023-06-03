@@ -49,12 +49,12 @@ const JobsWithdrawAndRmove = () => {
   }, []);
   console.log(data);
 
-  //click save job
-  const handleSaveJob = async (jobId) => {
+  //click save job  // {},
+  const handleSaveJob = async (item) => {
     try {
       const response = await axios.post(
-        `http://localhost:4000/api/user-jobs?type=Saved/${jobId}`,
-        {},
+        `http://localhost:4000/api/user-jobs`,
+        { user_id: item.user_id, job_id: item.job_id, type: "Saved" },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
@@ -126,7 +126,13 @@ const JobsWithdrawAndRmove = () => {
                   .
                 </p>
                 <Link
-                  onClick={() => handleSaveJob(item._id)}
+                  onClick={() =>
+                    handleSaveJob({
+                      user_id: item.user_id,
+                      job_id: item.job_id,
+                      type: "Saved",
+                    })
+                  }
                   className="flex justify-end pb-[10px] font-bold text-red-600 text-[20px]"
                 >
                   Save

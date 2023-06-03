@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const BrowseBySector = () => {
   const [data, setData] = useState([]);
-  const [error, setError] = useState([false]);
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
