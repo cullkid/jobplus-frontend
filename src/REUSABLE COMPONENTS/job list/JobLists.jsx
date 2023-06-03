@@ -9,7 +9,7 @@ import axios from "axios";
 import Pagination from "../pagination/Pagination";
 import { JobContext } from "../../CONTEXT/JobContext";
 
-const JobsWithdrawAndRmove = () => {
+const JobLists = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState([false]);
   const [loading, setLoading] = useState(true);
@@ -49,12 +49,12 @@ const JobsWithdrawAndRmove = () => {
   }, []);
   console.log(data);
 
-  //click save job  // {},
+  //click save job  // {},?type=Saved/${item}
   const handleSaveJob = async (item) => {
     try {
       const response = await axios.post(
-        `http://localhost:4000/api/user-jobs`,
-        { user_id: item.user_id, job_id: item.job_id, type: "Saved" },
+        "http://localhost:4000/api/user-jobs",
+        { user_id: item.user_id, job_id: item, type: "Saved" },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
@@ -127,11 +127,14 @@ const JobsWithdrawAndRmove = () => {
                 </p>
                 <Link
                   onClick={() =>
-                    handleSaveJob({
-                      user_id: item.user_id,
-                      job_id: item.job_id,
-                      type: "Saved",
-                    })
+                    handleSaveJob(
+                      //   {
+                      //   user_id: item.user_id,
+                      //   job_id: item.id,
+                      //   type: "Saved",
+                      // }
+                      item
+                    )
                   }
                   className="flex justify-end pb-[10px] font-bold text-red-600 text-[20px]"
                 >
@@ -151,4 +154,4 @@ const JobsWithdrawAndRmove = () => {
   );
 };
 
-export default JobsWithdrawAndRmove;
+export default JobLists;

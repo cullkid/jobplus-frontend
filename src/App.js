@@ -4,7 +4,6 @@ import LoginPage from "./PAGES/login/LoginPage";
 import HomePage from "./PAGES/home/HomePage";
 import JobNotificationPage from "./PAGES/job notification/JobNotificationPage";
 import JobAppliedPage from "./PAGES/jobs applied/JobAppliedPage";
-import JobListPage from "./PAGES/list jobs/JobListPage";
 import ProfilePage from "./PAGES/profile/ProfilePage";
 import SavedJobsPage from "./PAGES/saved jobs/SavedJobsPage";
 import ResetPasswordPage from "./PAGES/reset password/ResetPasswordPage";
@@ -14,6 +13,7 @@ import JobApply from "./COMPONENTS/apply jobs/JobApply";
 import FilterJobs from "./PAGES/filter jobs/FilterJobs";
 import JobsInASectorPage from "./PAGES/sector jobs page/JobsInASectorPage";
 import RegisterPage from "./PAGES/register page/RegisterPage";
+import JobListPage from "./PAGES/job list page/JobListPage";
 
 function App() {
   return (
