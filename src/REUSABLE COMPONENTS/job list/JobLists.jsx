@@ -4,7 +4,7 @@ import { AiFillStar } from "react-icons/ai";
 import { BiEuro } from "react-icons/bi";
 import { BiTimeFive } from "react-icons/bi";
 import { GrLocation } from "react-icons/gr";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Pagination from "../pagination/Pagination";
 import { JobContext } from "../../CONTEXT/JobContext";
@@ -13,6 +13,7 @@ const JobLists = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState([false]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const { savedJobsCount, setSavedJobsCount } = useContext(JobContext);
 
@@ -26,6 +27,7 @@ const JobLists = () => {
   //change page function
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  //fetch jobs function
   useEffect(() => {
     const fetchJobs = async () => {
       try {
@@ -49,12 +51,12 @@ const JobLists = () => {
   }, []);
   console.log(data);
 
-  //click save job  // {},?type=Saved/${item}
+  // save job function
   const handleSaveJob = async (item) => {
     try {
       const response = await axios.post(
         "http://localhost:4000/api/user-jobs",
-        { user_id: item.user_id, job_id: item, type: "Saved" },
+        { user_id: item.user_id, job_id: item },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("eze-token")}`,
@@ -66,6 +68,11 @@ const JobLists = () => {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  // // Function to handle read more click
+  const handleReadMoreClick = (jobId) => {
+    navigate(`/jobDetail/${jobId}`);
   };
 
   return (
@@ -91,8 +98,11 @@ const JobLists = () => {
                 </article>
 
                 <h6 className="mt-[10px] text-[20px]">
+                  {/* //UXins, flacs */}
                   posted by:
-                  <span className="text-blue-400 ml-[5px]">UXins, flacs</span>
+                  <span className="text-blue-400 ml-[5px]">
+                    {item.company[0].name}
+                  </span>
                 </h6>
 
                 {/*grid container */}
@@ -111,14 +121,19 @@ const JobLists = () => {
                   <article className="flex items-center">
                     <GrLocation size={25} />
                     <p className="ml-[5px]">
-                      Heyes, <span className="font-bold">Uxbridge</span>
+                      {item.company[0].city}{" "}
+                      <span className="font-bold">
+                        {" "}
+                        {item.company[0].district}
+                      </span>
                     </p>
                   </article>
                 </main>
                 <p className="mt-[15px] text-[15px]">
                   {item.description}
                   <Link
-                    to="/apply"
+                    to={`/jobDetail/${item.id}`}
+                    onClick={() => handleReadMoreClick(item.id)}
                     className="text-[18px] font-bold ml-[10px] text-blue-400"
                   >
                     Read more...

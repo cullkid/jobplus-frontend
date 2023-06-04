@@ -1,10 +1,10 @@
 import React from "react";
-import JobLists from "../../REUSABLE COMPONENTS/job list/JobLists";
+import JobList from "../../COMPONENTS/job list/JobList";
 
 const JobListPage = () => {
   return (
     <div>
-      <JobLists />
+      <JobList />
     </div>
   );
 };

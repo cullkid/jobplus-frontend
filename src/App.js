@@ -14,6 +14,7 @@ import FilterJobs from "./PAGES/filter jobs/FilterJobs";
 import JobsInASectorPage from "./PAGES/sector jobs page/JobsInASectorPage";
 import RegisterPage from "./PAGES/register page/RegisterPage";
 import JobListPage from "./PAGES/job list page/JobListPage";
+import JobDetails from "./PAGES/job detail/JobDetails";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/apply" element={<JobApply />} />
           <Route path="/filter" element={<FilterJobs />} />
           <Route path="/jobs/:id" element={<JobsInASectorPage />} />
+          <Route path="/jobDetail/:jobId" element={<JobDetails />} />
         </Routes>
       </div>
     </div>
