@@ -56,7 +56,7 @@ const JobLists = () => {
     try {
       const response = await axios.post(
         "http://localhost:4000/api/user-jobs",
-        { user_id: item.user_id, job_id: item },
+        { user_id: item.user_id, job_id: item, type: Saved },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("eze-token")}`,

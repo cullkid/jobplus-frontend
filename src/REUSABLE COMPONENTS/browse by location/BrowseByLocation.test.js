@@ -7,9 +7,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 jest.mock("axios");
 
 describe("BrowseByLocations", () => {
-  // afterEach(() => {
-  //   jest.clearAllMocks();
-  // });
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
   it("renders the component with data", async () => {
     const responseData = [
@@ -39,12 +39,12 @@ describe("BrowseByLocations", () => {
       expect(screen.getByText("Browse by location")).toBeInTheDocument();
     });
 
-    // responseData.forEach((location) => {
-    //   const locationTextRegex = new RegExp(
-    //     `${location.city} ${location.district}\\s*\\(${location.total_jobs}\\)`
-    //   );
-    //   // expect(screen.getByText(locationTextRegex)).toBeInTheDocument();
-    // });
+    responseData.forEach((location) => {
+      const locationTextRegex = new RegExp(
+        `${location.city} ${location.district}\\s*\\(${location.total_jobs}\\)`
+      );
+      // expect(screen.getByText(locationTextRegex)).toBeInTheDocument();
+    });
     expect(screen.getByText("City 2")).toBeInTheDocument();
   });
 });
