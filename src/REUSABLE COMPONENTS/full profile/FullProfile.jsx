@@ -186,7 +186,7 @@ const FullProfile = () => {
                     type="submit"
                     className="font-bold  mt-[15px] w-[300px] py-[3px] text-white bg-pink-600 hover:bg-pink-400"
                   >
-                    Submite
+                    Submites
                   </button>
                 </div>
               </form>
